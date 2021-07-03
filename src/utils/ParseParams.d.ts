@@ -2,6 +2,15 @@ import { Whitespace } from "./shared";
 import { Trim } from "./Trim";
 
 /**
+ * 判断是否有 {{key}} 插值
+ * {{}} 空字符串的并不算
+ */
+export type HasI18nKey<T extends string> = T extends `${any}{{}}${any}`
+  ? false
+  : T extends `${any}{{${string}}${any}`
+  ? true
+  : false;
+/**
  * 提取 {{key}} 获得的 key 可能是有 有空格 空字符等
  */
 export type _ExtractParams<

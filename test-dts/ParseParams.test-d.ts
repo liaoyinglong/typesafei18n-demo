@@ -2,8 +2,16 @@ import { expectType } from "tsd";
 import {
   _ExcludeWhitSpace,
   _ExtractParams,
+  HasI18nKey,
   ParseParams,
 } from "../src/utils/ParseParams";
+
+//#region test HasI18nKey
+declare const _hasI18nKey: <T extends string>(str: T) => HasI18nKey<T>;
+expectType<false>(_hasI18nKey("not have"));
+expectType<false>(_hasI18nKey("not have {{}}"));
+expectType<true>(_hasI18nKey("has {{o}}"));
+//#endregion
 
 //#region test _ExtractParams
 
