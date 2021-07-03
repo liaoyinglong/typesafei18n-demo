@@ -1,5 +1,5 @@
 import { expectType } from "tsd";
-import { Trim, TrimEnd, TrimStart } from "../src/utils/trim";
+import { Trim, TrimEnd, TrimStart } from "../src/utils/Trim";
 
 //#region test TrimStart
 declare const trimStart: <S extends string>(str: S) => TrimStart<S>;

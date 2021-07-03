@@ -1,4 +1,4 @@
-type Whitespace = " " | "\n" | "\r" | "\t";
+import { Whitespace } from "./shared";
 
 export type TrimStart<S extends string> = S extends `${Whitespace}${infer T}`
   ? TrimStart<T>
