@@ -1,13 +1,8 @@
 import { resources } from "./resources";
 import { HasI18nKey, ParseParams } from "./utils/ParseParams";
+import { PathKeys } from "./utils/PathKeys";
 
 type Data = typeof resources.en;
-
-type PathKeys<T extends Data, NS extends keyof T = keyof T> = NS extends string
-  ? keyof T[NS] extends string
-    ? `${NS}:${keyof T[NS]}`
-    : never
-  : never;
 
 type LangData<
   Path extends string,
