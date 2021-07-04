@@ -1,6 +1,5 @@
 import { expectType } from "tsd";
 import {
-  _ExcludeWhitSpace,
   _ExtractParams,
   HasI18nKey,
   ParseParams,
@@ -27,16 +26,6 @@ expectType<"one" | "two">(_extractParams("prfix {{one}} rest {{two}} rest2"));
 expectType<" one " | "two  ">(
   _extractParams("prfix {{ one }} rest {{two  }} rest2")
 );
-//#endregion
-
-//#region test _ExcludeWhitSpace
-declare const _excludeWhitSpace: <T extends string>(
-  ...args: T[]
-) => _ExcludeWhitSpace<T>;
-
-expectType<"one" | "two">(_excludeWhitSpace("one", "two", " "));
-expectType<"one" | "two">(_excludeWhitSpace("one", "two", " ", "\r"));
-expectType<" one " | "  two">(_excludeWhitSpace(" one ", "  two", " ", "\r"));
 //#endregion
 
 //#region test ParseParams
