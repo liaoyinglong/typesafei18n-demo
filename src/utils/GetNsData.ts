@@ -1,9 +1,13 @@
-type ExtractNs<T extends string> = T extends `${infer NS}:${infer Key}`
-  ? NS
-  : T;
+/**
+ * 提取 namespace
+ */
+type ExtractNs<T> = T extends `${infer NS}:${infer Key}` ? NS : T;
 
+/**
+ * 获取命名空间对应的 data
+ */
 export type GetNsData<
-  Path extends string,
+  Path,
   AllData,
   NS = ExtractNs<Path>
 > = NS extends keyof AllData ? AllData[NS] : unknown;

@@ -1,5 +1,5 @@
 import { GetNsData } from "../src/utils/GetNsData";
-import { expectError, expectType } from "tsd";
+import { expectType } from "tsd";
 
 const data = {
   user: {
@@ -21,5 +21,3 @@ expectType<Data["user"]>(getNsData("user:login"));
 expectType<Data["home"]>(getNsData("home"));
 expectType<Data["home"]>(getNsData("home:"));
 expectType<Data["home"]>(getNsData("home:login"));
-
-expectError<Data["home"]>(getNsData("home555"));
