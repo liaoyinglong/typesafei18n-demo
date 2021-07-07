@@ -5,7 +5,7 @@ import { Trim } from "./Trim";
  * 判断是否有 {{key}} 插值
  * {{}} 空字符串的并不算
  */
-export type HasI18nKey<T> = T extends `${any}{{}}${any}`
+export type HasI18nSlot<T> = T extends `${any}{{}}${any}`
   ? false
   : T extends `${any}{{${string}}${any}`
   ? true
