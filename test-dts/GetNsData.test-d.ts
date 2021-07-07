@@ -8,6 +8,10 @@ expectType<"user">(extractNs("user:button"));
 expectType<"user">(extractNs("user:"));
 expectType<"user">(extractNs("user"));
 
+// type T1 = ExtractNs<"user:button">; // user
+// type T2 = ExtractNs<"user:">; // user
+// type T3 = ExtractNs<"user">; // user
+
 //#endregion
 
 //#region test GetNsData
