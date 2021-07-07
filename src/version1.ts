@@ -1,14 +1,19 @@
-import { HasI18nKey, ParseParams } from "./utils/ParseParams";
 import { resources } from "./resources";
+import { ParseParams } from "./utils/ParseParams";
+import { PathKeys } from "./utils/PathKeys";
+import { GetI18nValue } from "./utils/GetI18nValue";
 
-type Data = typeof resources.en.global;
+type Data = typeof resources.en;
 
-function t<K extends keyof Data>(
+function t<K extends PathKeys<Data>, V extends GetI18nValue<K, Data>>(
   key: K,
-  ...args: HasI18nKey<Data[K]> extends true
-    ? [Record<ParseParams<Data[K]>, string>]
-    : []
+  params?: Record<ParseParams<V>, string>
 ) {}
 
-// t("noParams");
-// t("paramsThree", { one: "" });
+// 对应翻译为： "Hello "
+// 预期要报错，不应该有插值
+t("global:noParams", { shoudNotHaveParams: "" });
+
+// 对应的翻译内容为： "{{time}} {{tow}} {{three}} end"
+// 预期要报错，应该有插值
+t("global:paramsThree3");
