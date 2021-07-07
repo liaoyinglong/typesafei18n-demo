@@ -28,6 +28,9 @@ const data = {
 
 type Data = typeof data;
 
+// type T4 = GetNsData<"user:button", Data>; // { button:'按钮' }
+// type T5 = GetNsData<"home:title", Data>; // {title: "标题", subTitle: "子标题",}
+
 declare const getNsData: <T extends string>(key: T) => GetNsData<T, Data>;
 
 expectType<Data["user"]>(getNsData("user"));
