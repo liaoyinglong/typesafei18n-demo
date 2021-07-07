@@ -1,6 +1,6 @@
 import { expectType } from "tsd";
 import {
-  _ExtractParams,
+  ExtractParams,
   HasI18nKey,
   ParseParams,
 } from "../src/utils/ParseParams";
@@ -12,19 +12,25 @@ expectType<false>(_hasI18nKey("not have {{}}"));
 expectType<true>(_hasI18nKey("has {{o}}"));
 //#endregion
 
-//#region test _ExtractParams
+//#region test ExtractParams
 
-declare const _extractParams: <T extends string>(str: T) => _ExtractParams<T>;
+type T1 = ExtractParams<"some {{param}}">;            // "param"
+type T2 = ExtractParams<"with {{one}},with {{two}}">; // "one" | "two"
 
-expectType<never>(_extractParams("nothing"));
-expectType<"one">(_extractParams("{{one}}"));
-expectType<"one">(_extractParams("prfix {{one}}"));
-expectType<"one">(_extractParams("prfix {{one}} rest"));
-expectType<"one" | "two">(_extractParams("prfix {{one}} rest {{two}}"));
-expectType<"one" | "two">(_extractParams("prfix {{one}} rest {{two}} rest2"));
+type T1Params = Record<T1, string>; // { param:string }
+type T2Params = Record<T2, string>; // { one:string, two:string }
+
+declare const ExtractParams: <T extends string>(str: T) => ExtractParams<T>;
+
+expectType<never>(ExtractParams("nothing"));
+expectType<"one">(ExtractParams("{{one}}"));
+expectType<"one">(ExtractParams("prfix {{one}}"));
+expectType<"one">(ExtractParams("prfix {{one}} rest"));
+expectType<"one" | "two">(ExtractParams("prfix {{one}} rest {{two}}"));
+expectType<"one" | "two">(ExtractParams("prfix {{one}} rest {{two}} rest2"));
 
 expectType<" one " | "two  ">(
-  _extractParams("prfix {{ one }} rest {{two  }} rest2")
+  ExtractParams("prfix {{ one }} rest {{two  }} rest2")
 );
 //#endregion
 
