@@ -1,7 +1,7 @@
 /**
  * 提取 namespace
  */
-type ExtractNs<T> = T extends `${infer NS}:${infer Key}` ? NS : T;
+export type ExtractNs<T> = T extends `${infer NS}:${infer Key}` ? NS : T;
 
 /**
  * 获取命名空间对应的 data

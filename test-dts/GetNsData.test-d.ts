@@ -1,13 +1,24 @@
-import { GetNsData } from "../src/utils/GetNsData";
+import { ExtractNs, GetNsData } from "../src/utils/GetNsData";
 import { expectType } from "tsd";
+//#region test ExtractNs
+
+declare const extractNs: <T extends string>(str: T) => ExtractNs<T>;
+
+expectType<"user">(extractNs("user:button"));
+expectType<"user">(extractNs("user:"));
+expectType<"user">(extractNs("user"));
+
+//#endregion
+
+//#region test GetNsData
 
 const data = {
   user: {
-    "login.button": "",
+    button: "按钮",
   },
   home: {
-    title: "",
-    subTitle: "",
+    title: "标题",
+    subTitle: "子标题",
   },
 } as const;
 
@@ -21,3 +32,4 @@ expectType<Data["user"]>(getNsData("user:login"));
 expectType<Data["home"]>(getNsData("home"));
 expectType<Data["home"]>(getNsData("home:"));
 expectType<Data["home"]>(getNsData("home:login"));
+//#endregion
