@@ -10,6 +10,11 @@ declare const _hasI18nSlot: <T extends string>(str: T) => HasI18nSlot<T>;
 expectType<false>(_hasI18nSlot("not have"));
 expectType<false>(_hasI18nSlot("not have {{}}"));
 expectType<true>(_hasI18nSlot("has {{o}}"));
+
+type T11 = HasI18nSlot<"get false">;               // false
+type T22 = HasI18nSlot<"get false {{}}">;          // false
+type T33 = HasI18nSlot<"get true {{someParams}}">; // true
+
 //#endregion
 
 //#region test ExtractParams
