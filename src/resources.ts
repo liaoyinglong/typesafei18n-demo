@@ -6,6 +6,7 @@ export const resources = {
       paramsTwo: "Hello {{one}} {{tow}} ",
       paramsThree: "Hello {{one}} {{tow}} {{three}}",
       paramsThree2: "Hello {{one}} {{tow}} {{three}} end",
+      paramsThree3: "{{time}} {{tow}} {{three}} end",
     },
     login: {
       noParams: "Hello ",
