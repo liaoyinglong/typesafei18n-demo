@@ -10,5 +10,4 @@ function t<K extends PathKeys<Data>, V extends GetI18nValue<K, Data>>(
   ...args: HasI18nSlot<V> extends true ? [Record<ParseParams<V>, string>] : []
 ) {}
 
-t("global:noParams");
-// t();
+// t('global:noParams',{}); // 应有 1 个参数，但获得 2 个。
