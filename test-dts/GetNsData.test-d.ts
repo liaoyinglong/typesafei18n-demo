@@ -8,9 +8,9 @@ expectType<"user">(extractNs("user:button"));
 expectType<"user">(extractNs("user:"));
 expectType<"user">(extractNs("user"));
 
-// type T1 = ExtractNs<"user:button">; // user
-// type T2 = ExtractNs<"user:">; // user
-// type T3 = ExtractNs<"user">; // user
+type T1 = ExtractNs<"user:button">;  // user
+type T2 = ExtractNs<"user:">;        // user
+type T3 = ExtractNs<"user">;         // user
 
 //#endregion
 
@@ -40,3 +40,4 @@ expectType<Data["home"]>(getNsData("home"));
 expectType<Data["home"]>(getNsData("home:"));
 expectType<Data["home"]>(getNsData("home:login"));
 //#endregion
+
